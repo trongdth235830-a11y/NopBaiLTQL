@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHang.Data
 {
-    public class KhachHang
+    public class LoaiSanPham
     {
         public int ID { get; set; }
-        public string HoVaTen { get; set; }
-        public string? DienThoai { get; set; }
-        public string? DiaChi { get; set; }
+        public string TenLoai { get; set; }
 
-        public virtual ObservableCollectionListSource<HoaDon> HoaDon { get; } = new();
+        public virtual ObservableCollectionListSource<SanPham> SanPham { get; } = new();
     }
 }
