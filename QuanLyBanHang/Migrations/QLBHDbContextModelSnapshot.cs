@@ -17,7 +17,7 @@ namespace QuanLyBanHang.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.23")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -191,7 +191,7 @@ namespace QuanLyBanHang.Migrations
                     b.Property<int>("LoaiSanPhamID")
                         .HasColumnType("int");
 
-                    b.Property<string>("MoTa")
+                    b.Property<string>("Mota")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SoLuong")
@@ -257,7 +257,7 @@ namespace QuanLyBanHang.Migrations
                         .IsRequired();
 
                     b.HasOne("QuanLyBanHang.Data.LoaiSanPham", "LoaiSanPham")
-                        .WithMany("SanPham")
+                        .WithMany("SanPhams")
                         .HasForeignKey("LoaiSanPhamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -284,7 +284,7 @@ namespace QuanLyBanHang.Migrations
 
             modelBuilder.Entity("QuanLyBanHang.Data.LoaiSanPham", b =>
                 {
-                    b.Navigation("SanPham");
+                    b.Navigation("SanPhams");
                 });
 
             modelBuilder.Entity("QuanLyBanHang.Data.NhanVien", b =>

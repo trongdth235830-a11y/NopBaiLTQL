@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace QuanLyBanHang.Data
 {
-    public class QLBHDbContext : DbContext
+    public class QLBHDbContext:DbContext
     {
         public DbSet<LoaiSanPham> LoaiSanPham { get; set; }
         public DbSet<HangSanXuat> HangSanXuat { get; set; }
@@ -20,7 +20,14 @@ namespace QuanLyBanHang.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["QLBHConnection"].ConnectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+              
+                optionsBuilder.UseSqlServer(
+                    @"Server=LAPTOP-KT6FR8DE\SQLEXPRESS;Database=QLBH2;Integrated Security=True;TrustServerCertificate=True",
+                    providerOptions => providerOptions.EnableRetryOnFailure() // Sửa lỗi Transient failure
+                );
+            }
         }
     }
 }
